@@ -36,6 +36,8 @@ router.post(
 
 router.get('/get-oauth-url', ctrlWrapper(getAuthUrlCtrl));
 
+// Google авторизація
+
 router.post(
   '/confirm-oauth',
   validateBody(confirmAuthSchema),
