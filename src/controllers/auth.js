@@ -109,6 +109,8 @@ export const resetPasswordCtrl = async (req, res) => {
   });
 };
 
+// Google авторизація
+
 export const getAuthUrlCtrl = async (req, res) => {
   const url = generateAuthUrl();
 
