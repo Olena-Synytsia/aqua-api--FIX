@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-const stringField = Joi.string().min(3).max(20);
+const stringField = Joi.string().min(3).max(40);
 
 export const editUserSchema = Joi.object({
   name: stringField.optional(),
