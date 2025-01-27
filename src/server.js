@@ -12,43 +12,20 @@ const logger = pino();
 const app = express();
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'http://localhost:5173',
-      'https://aqua-track-02-gr.vercel.app',
-    ];
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      callback(null, true); // Якщо домен дозволено
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: ['http://localhost:5173', 'https://aqua-track-02-gr.vercel.app'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions)); // Використовуємо cors middleware, щоб налаштувати CORS
-
-app.use(express.json());
-app.use(cookieParser());
-
-app.use('/uploads', express.static(UPLOAD_DIR));
-app.use('/api-docs', swaggerDocs());
-
-// const corsOptions = {
-//   origin: ['http://localhost:5173', 'https://aqua-track-02-gr.vercel.app'],
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
-
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', ['http://localhost:5173']);
+//   res.setHeader('Access-Control-Allow-Origin', [
+//     'http://localhost:5173',
+//     'https://aqua-track-02-gr.vercel.app',
+//   ]);
 //   res.setHeader(
 //     'Access-Control-Allow-Methods',
 //     'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -59,11 +36,11 @@ app.use('/api-docs', swaggerDocs());
 //   next();
 // });
 
-// app.use(express.json());
-// app.use(cookieParser());
+app.use(express.json());
+app.use(cookieParser());
 
-// app.use('/uploads', express.static(UPLOAD_DIR));
-// app.use('/api-docs', swaggerDocs());
+app.use('/uploads', express.static(UPLOAD_DIR));
+app.use('/api-docs', swaggerDocs());
 
 // app.use((req, res, next) => {
 //   res.removeHeader('Cross-Origin-Opener-Policy');

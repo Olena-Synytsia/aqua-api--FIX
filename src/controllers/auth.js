@@ -131,6 +131,7 @@ export const confirmAuthCtrl = async (req, res, next) => {
   try {
     // Верифікація ID токену через Google
     const payload = await validateIdToken(idToken);
+    console.log('Payload from Google:', payload); // Логування результату
 
     const userPayload = {
       ...payload,
