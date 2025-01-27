@@ -29,28 +29,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
-
-app.use((req, res, next) => {
-  const allowedOrigins = [
-    'http://localhost:5173',
-    'https://aqua-track-02-gr.vercel.app',
-  ];
-  const origin = req.headers.origin;
-
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET,HEAD,PUT,PATCH,POST,DELETE',
-  );
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-  next();
-});
+app.use(cors(corsOptions)); // Використовуємо cors middleware, щоб налаштувати CORS
 
 app.use(express.json());
 app.use(cookieParser());
